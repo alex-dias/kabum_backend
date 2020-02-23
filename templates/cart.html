@@ -1,0 +1,17 @@
+<h1>Olá {{username}}, qual serão os produtos?</h1>
+
+<form action="{% url 'multiplier' %}">
+
+  {% for id, name, price, multiplier in products %}
+
+
+  <input id='productsHidden' type='hidden' value='No' name={{ id }}>
+  <input id='products' type="checkbox" value='Yes' name={{ id }}  > {{ name }}<br>
+
+  {% endfor %}
+
+  </br>
+
+  <input type="submit" value="Calcular Proposta" />
+
+</form>

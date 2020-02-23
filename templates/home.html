@@ -1,15 +1,16 @@
 <h1>Qual é o seu usuário?</h1>
 
-{% for id, name in users %}
 
-<input type="radio" name="gender" value= {{ name }} > {{ name }} <br>
+<form action="{% url 'cart' %}">
 
-{% endfor %}
+  {% for id, name in users %}
 
-</br>
+  <input type="radio" name="user" value= {{ name }} > {{ name }} <br>
 
-{% for id, name, price, multiplier in products %}
+  {% endfor %}
 
-<input type="radio" name="products" value= {{ name }} > {{ name }} <br>
+  </br>
 
-{% endfor %}
+  <input type="submit" value="Access" />
+
+</form>

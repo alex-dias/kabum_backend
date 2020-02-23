@@ -1,0 +1,10 @@
+<h1>Quanto você quer de cada produto?</h1>
+<h2>Alguns produtos são vendidos em pacotes já determinados</h2>
+
+{% for id, name, multiplier, flag in products %}
+
+<input type="checkbox" name="products" value= {{ name }} > {{ name }}<br>
+<label for="multiplier" > {{multiplier}}x</label>
+<input type="text" name={{ id }} size="5" value={{price}}><br>
+
+{% endfor %}
