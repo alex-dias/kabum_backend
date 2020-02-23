@@ -1,9 +1,15 @@
-<h1>TEST</h1>
+<h1>Qual é o seu usuário?</h1>
 
-{% for radio in test2 %}
+{% for id, name in users %}
 
-<div class="myradio">
-    {{ radio }}
-</div>
+<input type="radio" name="gender" value= {{ name }} > {{ name }} <br>
+
+{% endfor %}
+
+</br>
+
+{% for id, name, price, multiplier in products %}
+
+<input type="radio" name="products" value= {{ name }} > {{ name }} <br>
 
 {% endfor %}

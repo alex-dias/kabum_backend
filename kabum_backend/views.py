@@ -3,5 +3,6 @@ from django.shortcuts import render
 from . import forms
 
 def home(request):
-    form = forms.usersClass()
-    return render(request, 'home.html', {'form': form, 'test2': form.test2})
+    userForm = forms.usersClass()
+    productForm = forms.productClass()
+    return render(request, 'home.html', {'users': userForm.userNames, 'products': productForm.productsCollection})
