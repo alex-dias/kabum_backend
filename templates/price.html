@@ -5,13 +5,17 @@
   <input id='user' type='hidden' value={{username}} name='username'>
   <input id='priceValidator' type='hidden' value='priceValidator' name='priceValidator'>
 
-  {% for id, name, price, flag in products %}
+  {% for id, name, price, profitability, flag in products %}
 
-    <label for="products" > {{ name }}<br>
+    <b><label for="products" > {{ name }}</b>
+    <label for="multiplier" > x{{ flag }}<br>
     <label for="currency" >Preço Sugerido R$</label>
     <input type="number" min="0" step="0.01"  id={{ id }} name={{ id }} size="5" value={{price}}><br>
+    <label for="profitability" >Rentabilidade: {{profitability}}%</label><br>
 
   {% endfor %}
+
+  </br>
 
   <input type="submit" value="Validar preços" />
 

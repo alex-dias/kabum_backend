@@ -1,1 +1,21 @@
 <h1>{{username}}{{question}}</h1>
+<h2>Confira o resumo do seu pedido abaixo:</h2>
+
+<form action="{% url 'cart' %}">
+
+  <input id='user' type='hidden' value={{username}} name='username'>
+
+  {% for id, name, price, profitability, flag in products %}
+
+    <b><label for="products" > {{ name }}</b>
+    <label for="multiplier" > x{{ flag }}<br>
+    <label for="unityPrice" >Preço unitário: R${{price}}</label><br>
+    <label for="profitability" >Rentabilidade: {{profitability}}%</label><br>
+
+  {% endfor %}
+
+  </br>
+
+  <input type="submit" value="Novo pedido" />
+
+</form>

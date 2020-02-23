@@ -7,9 +7,9 @@
 
   {% for id, name, multiplier, flag in products %}
 
-  <label for="products" > {{ name }}<br>
-  <label for="multiplier" > {{multiplier}}x</label>
-  <input type="number" min="1" value=1 id={{ id }} name={{ id }} size="2"><br>
+  <b><label for="products" > {{ name }}</b>
+  <label for="multiplier" > - Pacote mínimo {{multiplier}} unidades</label><br>
+  <input type="number" min={{multiplier}} value={{multiplier}} step="{{multiplier}}" id={{ id }} name={{ id }} size="2"><br>
 
   {% endfor %}
 
