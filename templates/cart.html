@@ -1,18 +1,18 @@
+<!-- username is a parameter sent by the previous page -->
 <h1>Olá {{username}}, qual serão os produtos do seu pedido?</h1>
-
-
-
+<!-- Setting next page to multiplier page -->
 <form action="{% url 'multiplier' %}">
-
+  <!-- Setting username as a hidden parameter to be used in the next pages -->
   <input id='user' type='hidden' value={{username}} name='username'>
-
+  <!-- Loop to generate products as checkbox items -->
   {% for id, name, price, multiplier in products %}
+  <!-- New chekbox using parameters from the view method -->
   <input id='products' type="checkbox" value='Yes' name={{ id }}  > {{ name }}<br>
 
   {% endfor %}
 
   </br>
-
+  <!-- Button to the next page (multiplier) -->
   <input type="submit" value="Adicionar Produtos" />
 
 </form>

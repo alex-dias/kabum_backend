@@ -1,20 +1,24 @@
+<!-- username is a parameter sent by the previous page -->
 <h1>{{username}}, quanto você quer de cada produto?</h1>
 <h2>Alguns produtos são vendidos em pacotes já determinados</h2>
-
+<!-- Setting next page to price page -->
 <form action="{% url 'price' %}">
-
+  <!-- Setting username as a hidden parameter to be used in the next pages -->
   <input id='user' type='hidden' value={{username}} name='username'>
-
+  <!-- Loop to generate number boxes for multiplier items and aditional information to each item -->
   {% for id, name, multiplier, flag in products %}
 
   <b><label for="products" > {{ name }}</b>
+  <!-- Here is informed the multiplier for each prodcut -->
   <label for="multiplier" > - Pacote mínimo {{multiplier}} unidades</label><br>
+  <!-- This input is forcing the user to give only numbers, starting from the multiplier and iterating using multiplier as step
+      so the user are not able to input any number that is not a multiple from the multiplier -->
   <input type="number" min={{multiplier}} value={{multiplier}} step="{{multiplier}}" id={{ id }} name={{ id }} size="2"><br>
 
   {% endfor %}
 
   </br>
-
+  <!-- Button to the next page (price) -->
   <input type="submit" value="Ir para preços" />
 
 </form>

@@ -1,16 +1,15 @@
 <h1>Qual é o seu usuário?</h1>
-
-
+<!-- Setting next page to cart page -->
 <form action="{% url 'cart' %}">
-
+  <!-- Loop to generate all user options as radiobutton -->
   {% for id, name in users %}
-
+  <!-- New radiobutton using parameters from the view method -->
   <input type="radio" name="username" value= {{ name }} > {{ name }} <br>
 
   {% endfor %}
 
   </br>
-
-  <input type="submit" value="Access" />
+  <!-- Button to the next page (cart) -->
+  <input type="submit" value="Acessar" />
 
 </form>

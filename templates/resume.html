@@ -1,12 +1,17 @@
+<!-- username is a parameter sent by the previous page
+    question is a string that depends on the stage of the page
+    it changes after the first business rules validation -->
 <h1>{{username}}{{question}}</h1>
 <h2>Confira o resumo do seu pedido abaixo:</h2>
 
+<!-- Setting next page to cart page -->
 <form action="{% url 'cart' %}">
-
+  <!-- Setting username as a hidden parameter to be used in the next pages -->
   <input id='user' type='hidden' value={{username}} name='username'>
-
+  <!-- Loop to generate each product information -->
   {% for id, name, price, profitability, flag in products %}
 
+    <!-- Since this is the final page, there is no input anymore, besides username -->
     <b><label for="products" > {{ name }}</b>
     <label for="multiplier" > x{{ flag }}<br>
     <label for="unityPrice" >Preço unitário: R${{price}}</label><br>
@@ -15,7 +20,7 @@
   {% endfor %}
 
   </br>
-
+  <!-- Button to restart the procces directing to cart page -->
   <input type="submit" value="Novo pedido" />
 
 </form>

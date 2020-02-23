@@ -1,22 +1,30 @@
+<!-- username is a parameter sent by the previous page
+    question is a string that depends on the stage of the page
+    it changes after the first business rules validation -->
 <h1>{{username}}{{question}}</h1>
 
+<!-- Setting next page to price page -->
 <form action="{% url 'price' %}">
-
+  <!-- Setting username as a hidden parameter to be used in the next pages -->
   <input id='user' type='hidden' value={{username}} name='username'>
-  <input id='priceValidator' type='hidden' value='priceValidator' name='priceValidator'>
-
+  <!-- This hidden parameter informs if it is the first time the user access this page
+        This is important to calculate the question and profitability fields -->
+  <input id='priceValidator' type='hidden' value='Yes' name='priceValidator'>
+  <!-- Loop to generate each product information -->
   {% for id, name, price, profitability, flag in products %}
 
     <b><label for="products" > {{ name }}</b>
     <label for="multiplier" > x{{ flag }}<br>
-    <label for="currency" >Preço Sugerido R$</label>
+    <label for="unityPrice" >Preço Sugerido R$</label>
+    <!-- This input is forcing the user to give only numbers, starting from the $0 and iterating using two decimal places as step
+        so the user are not able to input any number that is negative or has more than two decimal places -->
     <input type="number" min="0" step="0.01"  id={{ id }} name={{ id }} size="5" value={{price}}><br>
     <label for="profitability" >Rentabilidade: {{profitability}}%</label><br>
 
   {% endfor %}
 
   </br>
-
+  <!-- Button to calculate profitability and refresh the page (price) -->
   <input type="submit" value="Validar preços" />
 
 </form>
