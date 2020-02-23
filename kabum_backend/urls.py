@@ -5,4 +5,5 @@ urlpatterns = [
     path('', views.home),
     path('cart/', views.cart, name = 'cart'),
     path('multiplier/', views.multiplier, name = 'multiplier'),
+    path('price/', views.price, name = 'price'),
 ]

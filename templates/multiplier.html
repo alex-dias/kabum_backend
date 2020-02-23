@@ -1,10 +1,18 @@
-<h1>Quanto você quer de cada produto?</h1>
+<h1>{{username}}, quanto você quer de cada produto?</h1>
 <h2>Alguns produtos são vendidos em pacotes já determinados</h2>
 
-{% for id, name, multiplier, flag in products %}
+<form action="{% url 'price' %}">
 
-<input type="checkbox" name="products" value= {{ name }} > {{ name }}<br>
-<label for="multiplier" > {{multiplier}}x</label>
-<input type="text" name={{ id }} size="5" value={{price}}><br>
+  <input id='user' type='hidden' value={{username}} name='username'>
 
-{% endfor %}
+  {% for id, name, multiplier, flag in products %}
+
+  <label for="products" > {{ name }}<br>
+  <label for="multiplier" > {{multiplier}}x</label>
+  <input type="text" id={{ id }} name={{ id }} size="2"><br>
+
+  {% endfor %}
+
+  <input type="submit" value="Ir para preços" />
+
+</form>

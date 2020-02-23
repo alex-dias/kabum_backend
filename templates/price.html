@@ -1,2 +1,13 @@
-<label for="currency" >Preço Sugerido R$</label>
-<input type="text" name={{ name }} size="5" value={{price}}><br>
+<h1>{{username}}, quanto você quer pagar por cada produto?</h1>
+
+<form action="{% url 'price' %}">
+
+  {% for id, name, price, flag in products %}
+
+  <label for="products" > {{ name }}<br>
+  <label for="currency" >Preço Sugerido R$</label>
+  <input type="text" name={{ id }} size="5" value={{price}}><br>
+
+  {% endfor %}
+
+</form>
