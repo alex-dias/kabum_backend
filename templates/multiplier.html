@@ -9,9 +9,11 @@
 
   <label for="products" > {{ name }}<br>
   <label for="multiplier" > {{multiplier}}x</label>
-  <input type="text" id={{ id }} name={{ id }} size="2"><br>
+  <input type="number" min="1" value=1 id={{ id }} name={{ id }} size="2"><br>
 
   {% endfor %}
+
+  </br>
 
   <input type="submit" value="Ir para preços" />
 

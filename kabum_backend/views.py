@@ -1,6 +1,7 @@
 from django.http import HttpResponse
 from django.shortcuts import render
 from . import forms
+from . import businessRules
 
 def home(request):
     userForm = forms.usersClass()
@@ -27,8 +28,26 @@ def price(request):
     parameters = request.GET
     products = []
     username = request.GET['username']
+    prof = []
 
-    for id, name, price, multiplier in productForm.productsCollection:
-        if id in parameters:
-            products.append([id, name, price, request.GET[id]])
-    return render(request, 'price.html', {'productsInfo': productForm.productsCollection, 'products': products, 'username': username})
+    if 'priceValidator' not in parameters:
+        for id, name, price, multiplier in productForm.productsCollection:
+            if id in parameters:
+                products.append([id, name, price, request.GET[id]])
+        return render(request, 'price.html', {'productsInfo': productForm.productsCollection, 'products': products, 'username': username, 'question': ', quanto você quer pagar por cada produto?'})
+    else:
+        for id, name, price, multiplier in productForm.productsCollection:
+            if id in parameters:
+                prof.append([id, businessRules.profitability(price, request.GET[id])])
+        if 0 in [item[1] for item in prof]:
+            for id, name, price, multiplier in productForm.productsCollection:
+                if id in parameters:
+                    products.append([id, name, request.GET[id], request.GET[id]])
+
+            return render(request, 'price.html', {'productsInfo': productForm.productsCollection, 'products': products, 'username': username, 'question': ', um ou mais itens não alcançaram a rentabilidade mínima, por favor sugira outro preço.'})
+
+        else:
+            for id, name, price, multiplier in productForm.productsCollection:
+                if id in parameters:
+                    products.append([id, name, price, request.GET[id]])
+            return render(request, 'resume.html', {'productsInfo': productForm.productsCollection, 'products': products, 'username': username, 'question': ', seu pedido foi aceito. Obrigado por comprar conosco.'})

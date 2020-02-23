@@ -1,13 +1,18 @@
-<h1>{{username}}, quanto você quer pagar por cada produto?</h1>
+<h1>{{username}}{{question}}</h1>
 
 <form action="{% url 'price' %}">
 
+  <input id='user' type='hidden' value={{username}} name='username'>
+  <input id='priceValidator' type='hidden' value='priceValidator' name='priceValidator'>
+
   {% for id, name, price, flag in products %}
 
-  <label for="products" > {{ name }}<br>
-  <label for="currency" >Preço Sugerido R$</label>
-  <input type="text" name={{ id }} size="5" value={{price}}><br>
+    <label for="products" > {{ name }}<br>
+    <label for="currency" >Preço Sugerido R$</label>
+    <input type="number" min="0" step="0.01"  id={{ id }} name={{ id }} size="5" value={{price}}><br>
 
   {% endfor %}
+
+  <input type="submit" value="Validar preços" />
 
 </form>
